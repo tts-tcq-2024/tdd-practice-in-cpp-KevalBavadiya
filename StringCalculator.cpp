@@ -3,7 +3,6 @@
 #include <stdexcept>
 #include <vector>
 #include <algorithm>
-#include <numeric>
 
 int StringCalculator::add(const std::string &numbers) {
     if (numbers.empty()) {
@@ -33,7 +32,7 @@ std::vector<int> StringCalculator::split(const std::string &input, const std::st
     std::vector<int> numbers;
     size_t start = 0;
     size_t end = input.find(delimiter);
-    
+
     while (end != std::string::npos) {
         numbers.push_back(parseNumber(input.substr(start, end - start)));
         start = end + delimiter.length();
@@ -72,4 +71,3 @@ void StringCalculator::checkForNegatives(const std::vector<int> &numbers) {
 int StringCalculator::sumNumbers(const std::vector<int> &numbers) {
     return std::accumulate(numbers.begin(), numbers.end(), 0);
 }
-
