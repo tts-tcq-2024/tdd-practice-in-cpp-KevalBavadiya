@@ -3,6 +3,7 @@
 #include <stdexcept>
 #include <vector>
 #include <algorithm>
+#include <numeric>
 
 int StringCalculator::add(const std::string &numbers) {
     if (numbers.empty()) {
