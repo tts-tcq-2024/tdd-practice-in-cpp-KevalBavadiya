@@ -49,18 +49,22 @@ int StringCalculator::parseNumber(const std::string &numStr) {
     return (num > 1000) ? 0 : num;
 }
 
+std::string buildNegativeExceptionMessage(const std::vector<int>& negatives) {
+    std::stringstream ss;
+    ss << "negatives not allowed: ";
+    for (size_t i = 0; i < negatives.size(); ++i) {
+        if (i != 0) ss << ", ";
+        ss << negatives[i];
+    }
+    return ss.str();
+}
+
 void StringCalculator::checkForNegatives(const std::vector<int> &numbers) {
     std::vector<int> negatives;
     std::copy_if(numbers.begin(), numbers.end(), std::back_inserter(negatives), [](int n) { return n < 0; });
 
     if (!negatives.empty()) {
-        std::stringstream ss;
-        ss << "negatives not allowed: ";
-        for (size_t i = 0; i < negatives.size(); ++i) {
-            if (i != 0) ss << ", ";
-            ss << negatives[i];
-        }
-        throw std::runtime_error(ss.str());
+        throw std::runtime_error(buildNegativeExceptionMessage(negatives));
     }
 }
 
