@@ -1,13 +1,20 @@
-#ifndef STRINGCALCULATOR_H
-#define STRINGCALCULATOR_H
+#ifndef STRINGCALCULATOR_HPP
+#define STRINGCALCULATOR_HPP
 
 #include <string>
 #include <vector>
 
 class StringCalculator {
 public:
-    // Method to add numbers from the input string
     int add(const std::string &numbers);
 
-#endif // STRINGCALCULATOR_H
+private:
+    std::vector<int> split(const std::string &input, const std::string &delimiter);
+    int parseNumber(const std::string &numStr);
+    void checkForNegatives(const std::vector<int> &numbers);
+    int sumNumbers(const std::vector<int> &numbers);
+};
 
+std::string buildNegativeExceptionMessage(const std::vector<int>& negatives);
+
+#endif 
